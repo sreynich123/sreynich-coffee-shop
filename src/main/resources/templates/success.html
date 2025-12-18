@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org">
+
+
+<head th:replace="~{base :: head}"></head>
+
+<body>
+    <!-- Navbar Start -->
+    <div th:replace="~{base :: navbar}"></div>
+    
+   
+    
+    <!-- Navbar End -->
+
+
+    <!-- Page Header Start -->
+    <div th:replace = "~{base :: header(text='Booked Success')}"></div>
+    <!-- Page Header End -->
+
+
+    <!-- Success Start -->
+    <<div class="col-lg-8 offset-lg-2 py-5">
+    <h2 class="text-center text-primary mb-4">Reservation Details</h2>
+
+    <table class="table table-bordered table-hover" style="background-color: #fff; color: #333;">
+        <thead class="thead-dark">
+            <tr>
+                <th>Field</th>
+                <th>Information</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+        	<tr>
+                <td>ID</td>
+                <td th:text="${booked.id}"></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td th:text="${booked.name}"></td>
+            </tr>
+            <tr>
+                <td>Phone Number</td>
+                <td th:text="${booked.phoneNumber}"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td th:text="${booked.email}"></td>
+            </tr>
+            <tr>
+                <td>Date</td>
+                <td th:text="${booked.date}"></td>
+            </tr>
+            <tr>
+                <td>Time</td>
+                <td th:text="${booked.time}"></td>
+            </tr>
+            <tr>
+                <td>Person</td>
+                <td th:text="${booked.person}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="text-center mt-4">
+        <a href="/reservation" class="btn btn-primary">Book Another Table</a>
+    </div>
+</div>
+    <!-- Success End -->
+
+
+    <!-- Footer Start -->
+        <div th:replace="~{base :: footer}"></div>
+    
+    <!-- Footer End -->
+
+
+    	<div th:replace="~{base :: script}"></div>
+    
+</body>
+
+</html>
