@@ -1,27 +1,19 @@
-# Stage 1: Build the JAR
-FROM eclipse-temurin:21-jdk AS build
-WORKDIR /app
-
-# Copy Gradle wrapper and build files
-COPY gradlew .
-COPY gradle gradle
-COPY build.gradle settings.gradle ./
-
-# Copy source code
-COPY src src
-
-# Build the application JAR
-RUN ./gradlew bootJar --no-daemon -x test
-
-# Stage 2: Run the JAR
+# Use official Java 21 image
 FROM eclipse-temurin:21-jdk
+
 WORKDIR /app
 
-# Copy JAR from build stage
-COPY --from=build /app/build/libs/*.jar app.jar
+# Copy project files
+COPY . .
 
-# Expose port
+# Make gradlew executable
+RUN chmod +x gradlew
+
+# Build JAR, skip tests
+RUN ./gradlew clean build -x test
+
+# Expose default port
 EXPOSE 8080
 
-# Run the app
-ENTRYPOINT ["java","-jar","app.jar"]
+# Run the JAR
+CMD ["java", "-jar", "build/libs/coffee-shop-telegram-bot-0.0.1-SNAPSHOT.jar"]
